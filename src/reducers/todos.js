@@ -1,4 +1,6 @@
-const todos = (state = [], action) => {
+const defaultState = []
+
+const todos = (state = defaultState, action) => {
   switch (action.type) {
     case 'TODOS':
       return action.todos;
@@ -6,7 +8,7 @@ const todos = (state = [], action) => {
       return [...state, action.todo]
     case "TOGGLE_TODO":
       return state.map(todo => {
-        if (todo.id === action.id) return { ...todo, complete: todo.complete }
+        if (todo.id === action.id) return { ...todo, complete: !todo.complete }
         return todo
       })
     default:
